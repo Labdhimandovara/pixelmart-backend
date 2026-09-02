@@ -5,16 +5,16 @@ services:
     plan: free
     region: singapore
     rootDir: backend
-    buildCommand: npm install && npx prisma generate && npx prisma db push
+    buildCommand: npm install && npx prisma generate
     startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        sync: false
+        value: "postgresql://postgres.cvqlrrkskpctmhqvttao:088ddd3976973e9e52d46fc2d95c7bbcA1%21@aws-0-ap-south-1.pooler.supabase.com:6543/postgres?pgbouncer=true&schema=pixelmart"
       - key: DIRECT_URL
-        sync: false
+        value: "postgresql://postgres.cvqlrrkskpctmhqvttao:088ddd3976973e9e52d46fc2d95c7bbcA1%21@aws-0-ap-south-1.pooler.supabase.com:5432/postgres?schema=pixelmart"
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_EXPIRES_IN
