@@ -1,3 +1,10 @@
+databases:
+  - name: pixelmart-db
+    plan: free
+    region: singapore
+    databaseName: pixelmart
+    user: pixelmart_user
+
 services:
   - type: web
     name: pixelmart-api
@@ -12,14 +19,18 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: pixelmart-db
+          property: connectionString
       - key: DIRECT_URL
-        sync: false
+        fromDatabase:
+          name: pixelmart-db
+          property: connectionString
       - key: JWT_SECRET
-        sync: false
+        generateValue: true
       - key: JWT_EXPIRES_IN
         value: 7d
       - key: ALLOWED_ORIGINS
-        sync: false
+        value: "*"
       - key: API_BASE_URL
-        sync: false
+        value: https://pixelmart-api.onrender.com
