@@ -76,6 +76,24 @@ app.use('/api/products', productsRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/orders', ordersRouter);
 
+// --- Root Welcome endpoint ---
+app.get('/', (req, res) => {
+  res.json({
+    service: 'PixelMart API',
+    status: 'online',
+    version: '1.0.0',
+    documentation: '/api-docs',
+    openapi: '/api/openapi.json',
+    health: '/health',
+    endpoints: {
+      products: '/api/products',
+      auth: '/api/auth/login',
+      cart: '/api/cart',
+      orders: '/api/orders',
+    },
+  });
+});
+
 // --- Health check ---
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'pixelmart-api', store: 'pixelmart' });
